@@ -40,7 +40,7 @@ class Map {
       this->table_[index].index = index;
     } else {
       while (!isEmpty(index)) {
-        index = index + 1 % capacity_;
+        index = index + 1 % this->capacity_;
       }
       this->table_[index].value = val;
       this->table_[index].index = index;
