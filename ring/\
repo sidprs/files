@@ -1,0 +1,50 @@
+#include <cmath>
+#include <deque>
+#include <iostream>
+#include <stdexcept>
+#include <vector>
+
+using namespace std;
+
+class RingBuffer {
+ public:
+  explicit RingBuffer(int capacity)
+      : head_{0},
+        tail_{0},
+        size_{0},
+        capacity_(capacity),
+        data_{new int[capacity]},
+        vec_{capacity} {}
+
+  ~RingBuffer() = default;
+  RingBuffer(const RingBuffer&) = default;
+  RingBuffer& operator=(const RingBuffer&) = default;
+  RingBuffer& operator=(RingBuffer&&) = default;
+
+  int pop() {
+    // the oldest val
+    if (this->size_ == 0) {
+      throw new std::logic_error("cant pop dumbass its empty");
+    }
+
+    int val = data_[this->head_];
+    this->head_ = (this->head_ + 1) % this->capacity_;
+    --this->size_;
+
+    return val;
+  }
+
+ private:
+  int head_;
+  int tail_;
+  int capacity_;
+  int* data_;
+  size_t size_;
+  std::vector<int> vec_;
+};
+
+int main(int argc, char* argv[]) {
+  int* a = new int[5];
+
+  return 0;
+}
