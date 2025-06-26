@@ -1,10 +1,21 @@
 #include <iostream>
 
+void swap(int& x, int& y) {
+  int temp = x;
+  x = y;
+  y = temp;
+}
+
+void Print(int* ptr) {
+  using namespace std;
+  cout << *ptr << endl;
+}
+
 int main() {
   using namespace std;
 
   int x = 10;
-  int &ref = x;
+  int& ref = x;
   int y = 30;
   ref = y;
 
