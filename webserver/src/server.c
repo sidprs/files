@@ -4,7 +4,9 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#define PORT 8080
+
+#define PORT 8081
+
 
 
 
@@ -19,7 +21,7 @@ int main(int argc, char *argv[]){
 
     socklen_t addrlen = sizeof(address);
     char buffer[1024] = { 0 };
-    char* hello = "Hello from server";
+    char* message = "Hello from server = sid";
 
 
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -61,8 +63,8 @@ int main(int argc, char *argv[]){
     valread = read(new_socket, buffer,
                    1024 - 1); 
     printf("%s\n", buffer);
-    send(new_socket, hello, strlen(hello), 0);
-    printf("Hello message sent\n");
+    send(new_socket, message , strlen(message), 0);
+    printf("Message sent- server side\n");
 
     // closing the connected socket
     close(new_socket);
